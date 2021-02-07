@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Restaurant</title>
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- css -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row form mt-5">
+                    <div class="input-group mb-3 w-50 mx-auto">
+                        <input type="text" class="form-control" placeholder="Search your meal"
+                            aria-describedby="SearchBtn" id="searchText">
+                        <button class="btn btn-success" type="button" id="searchBtn">Search</button>
+                    </div>
+                    <p id="msg" class="text-center text-danger fw-bold">N.B: Search with Name & first letter of meal</p>
+                </div>
+                <div id="mealDetails"></div>
+                <div class="row" id="allCards"></div>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+
+</html>
