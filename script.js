@@ -89,7 +89,6 @@ const displayMealInfo = data => {
                     const p = document.createElement('p')
                     p.innerHTML = `<i class="far fa-check-circle" style="color: tomato"></i> ${ingredient.strIngredient[i]} : ${ingredient.strMeasure[j]}`
                     ingredientBody.appendChild(p)
-                    console.log(ingredient.strMeasure[j]);
                 }
             }
         }
