@@ -22,8 +22,13 @@ body{
     width: 400px;
     border-radius: 10px;
     background-image: linear-gradient(rgba(232, 232, 232, 0.2), rgba(232, 232, 232, 0.5));
-    margin: 0 auto;
+    margin: 10px auto;
 }
 .ingredients-card img{
     height: 300px;
+}
+@media (max-width: 575.98px) {
+    .inputDiv{
+        width: 80% !important;
+    }
 }

@@ -10,11 +10,8 @@ searchBtn.addEventListener('click', () => {
             fetchData(url1)
         }
         if (searchText.length > 1) {
-            const [...meal] = document.querySelectorAll('h6');
-            const mealName = meal.map(element => element.innerText);
-            if (mealName.indexOf(searchText) === -1) {
-                fetchData(url2)
-            }
+            document.getElementById('allCards').innerHTML = ''
+            fetchData(url2)
         }
     }
     else {
@@ -36,9 +33,10 @@ const fetchData = (url) => {
 const displayMeal = data => {
     const meals = data.meals;
     if (meals === null) {
-        document.getElementById('msg').innerText = `Item Not Found`
+        document.getElementById('msg').innerText = `Recipe Not Found`
     }
     meals.forEach(meals => {
+        document.getElementById('mealDetails').innerHTML = ''
         const allCards = document.getElementById('allCards')
         const card = document.createElement('div')
         card.classList.add('card', 'col-md-6', 'col-lg-3', 'mb-3', 'border-0')
@@ -64,24 +62,45 @@ const displayIngredient = mealId => {
 
 const displayMealInfo = data => {
     const mealDetails = document.getElementById('mealDetails')
-            mealDetails.innerHTML = ''
-            data.meals.forEach(element => {
-                const singleMeals = document.createElement('div')
-                singleMeals.className = 'col-md-12'
-                singleMeals.innerHTML = `
+    mealDetails.innerHTML = ''
+    data.meals.forEach(element => {
+        const singleMeals = document.createElement('div')
+        singleMeals.className = 'col-md-12'
+        singleMeals.innerHTML = `
                     <div class="card ingredients-card">
-                        <img src="${element.strMealThumb}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">${element.strMeal}</h5>
-                            <h3>Category : ${element.strCategory}</h3>
-                            <p>${element.strIngredient1} : ${element.strMeasure1}</p>
-                            <p>${element.strIngredient2} : ${element.strMeasure2}</p>
-                            <p>${element.strIngredient3} : ${element.strMeasure3}</p>
-                            <p>${element.strIngredient4} : ${element.strMeasure4}</p>
-                            <p>${element.strIngredient5} : ${element.strMeasure5}</p>
-                            <p>${element.strIngredient6} : ${element.strMeasure6}</p>
+                        <img src="${element.strMealThumb}" class="card-img-top rounded-top" alt="...">
+                        <div class="card-body" id = "ingredient-body">
+                            <h5 class="card-title fw-bold">${element.strMeal}</h5>
+                            <h6 class="fw-bold my-4">Category : ${element.strCategory}</h6>
+                            <p class="fw-bold">ingredients</p>
                         </div>
                     </div>`
-                mealDetails.appendChild(singleMeals);
-            })
+        mealDetails.appendChild(singleMeals);
+
+
+        const ingredient = ingredients(element)
+        const ingredientBody = document.getElementById('ingredient-body')
+
+
+        for (let i = 0; i < ingredient.strIngredient.length; i++) {
+            if(ingredient.strIngredient[i] === null){console.log('not');}
+            for (let j = i; j <= i; j++) {
+                if (ingredient.strIngredient[i] !== '' && ingredient.strIngredient[i] !== null) {
+                    const p = document.createElement('p')
+                    p.innerHTML = `<i class="far fa-check-circle" style="color: tomato"></i> ${ingredient.strIngredient[i]} : ${ingredient.strMeasure[j]}`
+                    ingredientBody.appendChild(p)
+                    console.log(ingredient.strMeasure[j]);
+                }
+            }
+        }
+    })
+}
+
+const ingredients = element => {
+
+    const ingredient = {
+        strIngredient: [element.strIngredient1, element.strIngredient2, element.strIngredient3, element.strIngredient4, element.strIngredient5, element.strIngredient6, element.strIngredient7, element.strIngredient8, element.strIngredient9, element.strIngredient10],
+        strMeasure: [element.strMeasure1, element.strMeasure2, element.strMeasure3, element.strMeasure4, element.strMeasure5, element.strMeasure6, element.strMeasure7, element.strMeasure8, element.strMeasure9, element.strMeasure10]
+    }
+    return ingredient;
 }
