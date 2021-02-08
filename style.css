@@ -1,13 +1,28 @@
 body{
     font-family: 'Open Sans', sans-serif;
 }
+.itemNav {
+    color: rgba(238, 73, 73, .9) !important;
+    font-weight: bold;
+}
+.itemNav:hover{
+    border-bottom: 2px solid rgba(238, 73, 73, .5);
+}
+.nav-image{
+    width: 50px;
+    border-radius: 10px;
+}
+#navTitle{
+    font-weight: bold;
+    font-size: 30px;
+    color: rgba(238, 73, 73, .6);
+}
 .meal-card{
     width: 95%;
     padding: 10px;
     border-radius: 10px;
     background-image: linear-gradient(rgba(232, 232, 232, 0.2), rgba(232, 232, 232, 0.5));
     height: 330px;
-
 }
 .meal-card h6{
     text-align: center;
