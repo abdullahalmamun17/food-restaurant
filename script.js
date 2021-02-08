@@ -26,10 +26,7 @@ searchBtn.addEventListener('click', () => {
 const fetchData = (url) => {
     fetch(url)
         .then(res => res.json())
-        .then(data => {
-            displayMeal(data)
-            displayIngredient(data)
-        })
+        .then(data => displayMeal(data))
         .catch(error => {
             document.getElementById('allCards').style.display = 'none';
             console.log(error);
@@ -46,7 +43,7 @@ const displayMeal = data => {
         const card = document.createElement('div')
         card.classList.add('card', 'col-md-6', 'col-lg-3', 'mb-3', 'border-0')
         card.innerHTML = `
-        <div class="meal-card" onClick="displayIngredient(${meals.idMeal})">
+        <div class="meal-card" onclick="displayIngredient(${meals.idMeal})">
         <img src="${meals.strMealThumb}" class="card-img-top rounded mx-auto d-block" alt="image not found">
         <div class="card-body">
             <h6 class="card-title">${meals.strMeal}</h6>
@@ -58,14 +55,21 @@ const displayMeal = data => {
 }
 
 const displayIngredient = mealId => {
-    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+    const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
+    fetch(url)
         .then(res => res.json())
-        .then(data => {
-            const mealDetails = document.getElementById('mealDetails')
+        .then(data => displayMealInfo(data))
+
+}
+
+const displayMealInfo = data => {
+    const mealDetails = document.getElementById('mealDetails')
+            mealDetails.innerHTML = ''
             data.meals.forEach(element => {
                 const singleMeals = document.createElement('div')
+                singleMeals.className = 'col-md-12'
                 singleMeals.innerHTML = `
-                    <div class="card" style="width: 20rem">
+                    <div class="card ingredients-card">
                         <img src="${element.strMealThumb}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">${element.strMeal}</h5>
@@ -80,6 +84,4 @@ const displayIngredient = mealId => {
                     </div>`
                 mealDetails.appendChild(singleMeals);
             })
-        })
-
 }
